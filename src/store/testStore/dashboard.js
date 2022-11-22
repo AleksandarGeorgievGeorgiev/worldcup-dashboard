@@ -77,7 +77,7 @@ export const useDashboardStore = defineStore('dashboard', {
     async getStandings() {
       axios.defaults.headers = { "Access-Control-Allow-Headers": "*", "Authorization": `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzdkMmQ4MDYzOTQyMmFkODI0YmNkODgiLCJpYXQiOjE2NjkxNTk2MzAsImV4cCI6MTY2OTI0NjAzMH0.bN5lXMDn5WJj6dLREJckmQW3VZO7P-UX4ZnpQk5oNVo` };
       return new Promise((resolve) => {
-        axios.get(`${API_URL}/api/v1/standings`).then((response) => {
+        axios.get(`/api/v1/standings`).then((response) => {
           console.log("standings", response);
           this.standings = response.data.data;
           resolve(true);
