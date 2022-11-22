@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import axios from 'axios';
+import { API_URL } from 'src/common/config';
 
 export const useDashboardStore = defineStore('dashboard', {
   state: () => ({
@@ -65,7 +66,7 @@ export const useDashboardStore = defineStore('dashboard', {
       axios.defaults.headers = { "Access-Control-Allow-Headers": "*" };
 
 
-      axios.post(`/api/v1/user/login`, {
+      axios.post(`${API_URL}/api/v1/user/login`, {
         "email": "alekvd77@gmail.com",
         "password": "FuckYou0225",
       }).then((response) => {
@@ -74,10 +75,9 @@ export const useDashboardStore = defineStore('dashboard', {
       })
     },
     async getStandings() {
-      axios.defaults.headers = { "Access-Control-Allow-Headers": "*", "Authorization": `Bearer ${localStorage.getItem("token")}` };
-      this.login();
+      axios.defaults.headers = { "Access-Control-Allow-Headers": "*", "Authorization": `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzdkMmQ4MDYzOTQyMmFkODI0YmNkODgiLCJpYXQiOjE2NjkxNTk2MzAsImV4cCI6MTY2OTI0NjAzMH0.bN5lXMDn5WJj6dLREJckmQW3VZO7P-UX4ZnpQk5oNVo` };
       return new Promise((resolve) => {
-        axios.get(`/api/v1/standings`).then((response) => {
+        axios.get(`${API_URL}/api/v1/standings`).then((response) => {
           console.log("standings", response);
           this.standings = response.data.data;
           resolve(true);
