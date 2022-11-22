@@ -75,7 +75,7 @@ export const useDashboardStore = defineStore('dashboard', {
     },
     async getStandings() {
       axios.defaults.headers = { "Access-Control-Allow-Headers": "*", "Authorization": `Bearer ${localStorage.getItem("token")}` };
-
+      this.login();
       return new Promise((resolve) => {
         axios.get(`/api/v1/standings`).then((response) => {
           console.log("standings", response);
